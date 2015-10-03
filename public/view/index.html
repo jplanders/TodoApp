@@ -1,9 +1,42 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="todoApp">
 <head>
+<!-- bootstrapping for CSS's good looks -->
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 	<title>Todo List</title>
 </head>
 <body>
-	<p>Hello from index.html</p>
+
+	<div class="container" ng-controller="taskController">
+		<h1>You have {{tasklist.length}} items on your todo list</h1>
+
+	<table class="table">
+		<thead>
+			<th>Task</th>
+			<!--<th>Active</th>-->
+			<th>Start Date</th>
+			<th>End Date</th>
+		</thead>
+		<tbody>
+			<tr ng-repeat='task in tasklist'>
+			<td>{{task.name}}</td>
+			<!--<td>{{task.active}}</td>-->
+			<td>{{task.startDate}}</td>
+			<td>{{task.endDate}}</td>
+			</tr>
+		</tbody>
+	</table>
+	</div>
+
+	<!-- including angular.js -->
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-resource.js"></script>
+
+	<!-- including app.js and task-controller.js -->
+	<script type="text/javascript" src="/js/app.js"></script>
+	<script type="text/javascript" src="/js/controllers/task-controller.js"></script>
 </body>
 </html>
