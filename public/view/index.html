@@ -22,13 +22,17 @@
 		</thead>
 		<tbody>
 			<tr ng-repeat='task in tasklist'>
-			<td>{{task.name}}</td>
-			<!--<td>{{task.active}}</td>-->
-			<td>{{task.startDate}}</td>
-			<td>{{task.endDate}}</td>
+				<td>{{task.name}}</td>
+				<!--<td>{{task.active}}</td>-->
+				<td>{{task.startDate}}</td>
+				<td>{{task.endDate}}</td>
 			</tr>
 		</tbody>
 	</table>
+	<form ng-submit="createTask()">
+		<input type="text" placeholder="Task Name" ng-model="taskName"></input>
+		<button type="submit">Add</button>
+	</form>
 	</div>
 
 	<!-- including angular.js -->
