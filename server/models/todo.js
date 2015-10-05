@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-var todoSchema = mongoose.Schema({
+var todoSchema = new mongoose.Schema({
 	name: String,
 	startDate: String,
 	endDate: String

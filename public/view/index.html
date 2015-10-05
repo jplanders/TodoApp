@@ -16,16 +16,18 @@
 	<table class="table">
 		<thead>
 			<th>Task</th>
-			<!--<th>Active</th>-->
 			<th>Start Date</th>
 			<th>End Date</th>
+			<th>Edit / Delete</th>
 		</thead>
 		<tbody>
 			<tr ng-repeat='task in tasklist'>
 				<td>{{task.name}}</td>
-				<!--<td>{{task.active}}</td>-->
 				<td>{{task.startDate}}</td>
 				<td>{{task.endDate}}</td>
+				<td><button class="btn btn-warning" ng-click="update(task._id)">Edit</button>
+					&nbsp&nbsp<button class="btn btn-danger" ng-click="remove(task._id)">Delete</button>
+					</td>
 			</tr>
 		</tbody>
 	</table>

@@ -1,5 +1,5 @@
 //public controller
-todoApp.controller('taskController', ['$scope', '$resource', function ($scope, $resource) {
+todoApp.controller('taskController', ['$scope', '$resource', '$http', function ($scope, $resource, $http) {
 // scope is used to talk between view and controller
 	var Todo = $resource('/api/tasklist')
 
@@ -15,8 +15,6 @@ todoApp.controller('taskController', ['$scope', '$resource', function ($scope, $
 	$scope.tasklist = [	];
 
 	$scope.createTask = function () {
-		//$scope.tasklist.push({ name: $scope.taskName, startDate: getCurDate(), endDate: "" });
-		//$scope.taskName = "";
 		var todo = new Todo();
 		todo.name = $scope.taskName;
 		todo.startDate = getCurDate();
@@ -25,6 +23,14 @@ todoApp.controller('taskController', ['$scope', '$resource', function ($scope, $
 			$scope.tasklist.push(result);
 		});
 		$scope.taskName = "";
-
 	}
+
+	$scope.remove = function(id) {
+		console.log(id);
+		$http.delete('/todolist/' + id).success(function(response) {
+			Todo.query(function (results) {
+			$scope.tasklist = results;
+			});
+		});
+	};
 }]);
