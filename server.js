@@ -19,7 +19,6 @@ app.use('/js', express.static(__dirname + '/public/js'));
 
 app.get('/api/tasklist', taskController.list);
 
-
 app.post('/api/tasklist', taskController.create);
 
 app.delete('/todolist/:id', function (req, res) {
