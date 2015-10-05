@@ -24,7 +24,7 @@ The item will appear in the in the Task Name text box for editing.
 
 The Add button will become hidden and an Update and Delete button will take its place.
 
-You can either make a change to the item and click the blue Update button or click the red Detele button to remove the task from your list.
+You can either make a change to the item and click the blue Update button or click the red Delete button to remove the task from your list.
 
 At the bottom of the Todo list app are three view options.
 
