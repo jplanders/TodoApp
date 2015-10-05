@@ -9,32 +9,59 @@
 	<title>Todo List</title>
 </head>
 <body>
-
+<script type="text/javascript">
+<!--
+	function hideAddBtn() {
+		document.getElementById("addBtn").style.visibility = "hidden";
+		document.getElementById("updateBtn").style.visibility = "visible";
+		document.getElementById("delBtn").style.visibility = "visible";
+	}
+	function hideUpdateBtn() {
+		document.getElementById("addBtn").style.visibility = "visible";
+		document.getElementById("updateBtn").style.visibility = "hidden";
+		document.getElementById("delBtn").style.visibility = "hidden";
+	}
+-->
+</script>
 	<div class="container" ng-controller="taskController">
 		<h1>You have {{tasklist.length}} items on your todo list</h1>
-
-	<table class="table">
-		<thead>
-			<th>Task</th>
-			<th>Start Date</th>
-			<th>End Date</th>
-			<th>Edit / Delete</th>
-		</thead>
-		<tbody>
-			<tr ng-repeat='task in tasklist'>
-				<td>{{task.name}}</td>
-				<td>{{task.startDate}}</td>
-				<td>{{task.endDate}}</td>
-				<td><button class="btn btn-warning" ng-click="update(task._id)">Edit</button>
-					&nbsp&nbsp<button class="btn btn-danger" ng-click="remove(task._id)">Delete</button>
+		<p></p>
+		<table class="table">
+			<thead>
+				<th>Task</th>
+				<th>Start Date</th>
+				<th>End Date</th>
+				<th>&nbsp</th>
+				<th>Edit / End Task</th>
+			</thead>
+			<tbody>
+				<tr ng-repeat='task in tasklist'>
+					<td>{{task.name}}</td>
+					<td>{{task.startDate}}</td>
+					<td>{{task.endDate}}</td>
+					<td>&nbsp</td>
+					<td>
+						<button class="btn btn-warning" ng-click="edit(task._id)" onClick="hideAddBtn()">Edit</button>
+						&nbsp&nbsp<button class="btn btn-danger" ng-click="end(task._id)">End</button>
 					</td>
-			</tr>
-		</tbody>
-	</table>
-	<form ng-submit="createTask()">
-		<input type="text" placeholder="Task Name" ng-model="taskName"></input>
-		<button type="submit">Add</button>
-	</form>
+				</tr>
+			</tbody>
+		</table>
+		<form>
+			<div class="row">
+				<input type="text" placeholder="Task Name" ng-model="taskName.name"></input>
+				&nbsp&nbsp
+				<button class="btn btn-primary" id="addBtn" type="submit" ng-click="createTask()">Add</button>
+				<button class="btn btn-info" id="updateBtn" style= "visibility: hidden" type="submit" onClick="hideUpdateBtn()" ng-click="updateTask()">Update</button>
+				<button class="btn btn-danger" id="delBtn" style= "visibility: hidden" type="submit" onClick="hideUpdateBtn()" ng-click="remove()">Delete</button>
+			</div>
+		</form>
+		<form>
+			<div class="row">
+				<h2>View: </h2>
+
+			</div>
+		</form>
 	</div>
 
 	<!-- including angular.js -->

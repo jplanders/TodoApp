@@ -16,7 +16,7 @@ todoApp.controller('taskController', ['$scope', '$resource', '$http', function (
 
 	$scope.createTask = function () {
 		var todo = new Todo();
-		todo.name = $scope.taskName;
+		todo.name = $scope.taskName.name;
 		todo.startDate = getCurDate();
 		todo.endDate = "";
 		todo.$save(function(result) {
@@ -25,12 +25,47 @@ todoApp.controller('taskController', ['$scope', '$resource', '$http', function (
 		$scope.taskName = "";
 	}
 
-	$scope.remove = function(id) {
-		console.log(id);
-		$http.delete('/todolist/' + id).success(function(response) {
+	$scope.remove = function() {
+		$http.delete('/todolist/' + $scope.taskName._id).success(function(response) {
 			Todo.query(function (results) {
 			$scope.tasklist = results;
 			});
 		});
+		$scope.taskName = "";
 	};
+
+	$scope.edit = function(id) {
+		$http.get('/todolist/' + id).success(function(response) {
+			console.log(id);
+			var todo = new Todo();
+			todo = response;
+			$scope.taskName = todo;
+		});
+	}
+
+	$scope.updateTask = function() {
+		console.log($scope.taskName._id)
+		$http.put('/todolist/' + $scope.taskName._id, $scope.taskName).success(function(response) {
+			Todo.query(function (results) {
+			$scope.tasklist = results;
+		});
+		})
+		$scope.taskName = "";
+	};
+
+	$scope.end = function(id) {
+		$http.get('/todolist/' + id).success(function(response) {
+			console.log(id);
+			var todo = new Todo();
+			todo = response;
+			if(todo.endDate == "") {
+				todo.endDate = getCurDate();
+			}
+			$http.put('/todolist/' + todo._id, todo).success(function(response) {
+				Todo.query(function (results) {
+				$scope.tasklist = results;
+				});
+			});
+	})};
+
 }]);
